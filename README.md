@@ -9,8 +9,15 @@ This repo hold the Lightning Domain standard.
 - Implement NIP-57
 - NIP-05 and LUD-16 should be owned by the same user
 - .well-known file
-- User `_` on NIP-05 must have a valid pubkey (ADMIN)
+- User `_` on NIP-05 must have a valid pubkey (ROOT)
 - An updatable event should be piblished when handles are assigned or removed for a pubkey
+- [Walias endpoints](./API_ENDPOINTS.md)
+
+## Api Endpoints
+- Check walias availability and price
+- Register/Buy new walias
+- Transfer walias
+- Remove walias
 
 ## Domain .well-known
 
