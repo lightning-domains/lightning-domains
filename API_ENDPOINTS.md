@@ -42,25 +42,31 @@ Should return:
 ```ts
 {
     quote: {
-        price: 70000,
+        price: 70000, // sats value
         data: {
             type: "short"
         }
     },
-    paymentHash: "",
     invoice: "lnbc700u1pn0fewqpp5p6fmprzy23pyslgn7xzzp9srg9j47dzaqrykna2pjnaepjgnv3wsdp4fey4qtfsx5sx7unyv4ezqen0wgsxzmrzgpekummjwsh8xmmrd9skccqzzsxqzjcsp53vk776zwe3d4yee8zf085r9996h8w9e6u5v25209p9eq6a226grq9qyyssqnapdy7jmyjcl7vun7my5pq3y8473uchuh0q02px0d69xaggka9azss8967e6p73snv97tnfh3nhxur65etexy6v93nexkmlsq3nhvmcqu5dfmf",
-    token: "234541bc-1548-488f-93e5-a8f4cc74f7f6"
+    referenceId: "e tag in ZapReceipt event to be published",
+    verify: "https://url_lnurl21_compatible.com/check" // LUD21 verify url
 }
 ```
 
+Once the payment is done, the updatable event should be published.
 
-# Via Nostr
+# Authenticated endpoints (Nostr based)
 
-All endpoints can be accessed via nostr adding the prefix to the endpoint `/nostr/`, making a `POST` request and add an event to the body as follows.
-The event should be formed like this
+Authenticated methods should be wrapped with a Nostr event. `POST` request and add an event to the body as follows.
+The event should be formed like this.
 
 ```json
 {
+  "kind": 1199,
+  "tags": [
+    ["namespace", "walias"],
+    ["action", "register"]
+  ],
   "content": JSON.stringify({
     "name": "handle",
     "domain": "domain",
@@ -68,4 +74,4 @@ The event should be formed like this
   })
 }
 
-This should be sent via `POST` to `/nostr/walias/register`
+This should be sent via `POST` to `/api/nostr/`
