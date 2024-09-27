@@ -11,6 +11,7 @@ This repo hold the Lightning Domain standard.
 - .well-known file
 - User `_` on NIP-05 must have a valid pubkey (ROOT)
 - Create a badge definition and badge award per pubkey
+- Endpoints use [NIP-98](https://github.com/nostr-protocol/nips/blob/master/98.md)
 - [Walias endpoints](./API_ENDPOINTS.md)
 
 ## Api Endpoints
