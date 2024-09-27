@@ -57,21 +57,24 @@ Once the payment is done, the updatable event should be published.
 
 # Authenticated endpoints (Nostr based)
 
-Authenticated methods should be wrapped with a Nostr event. `POST` request and add an event to the body as follows.
-The event should be formed like this.
+Authenticated methods should use a HTTP Nostr Header like [NIP-98](https://github.com/nostr-protocol/nips/blob/master/98.md)
 
-```json
-{
-  "kind": 1199,
+```js
+const body = JSON.stringify({
+  "name": "handle",
+  "domain": "domain",
+  "pk": "2ad91f1dca2dcd5fc89e7208d1e5059f0bac0870d63fc3bac21c7a9388fa18fd",
+});
+
+const base64Body = btoa(body);
+
+const event = {
+  "kind": 27235,
   "tags": [
-    ["namespace", "walias"],
-    ["action", "register"]
+    ["u", "/api/walias"],
+    ["method", "POST"],
+    ["payload", base64Body]
   ],
-  "content": JSON.stringify({
-    "name": "handle",
-    "domain": "domain",
-    "pk": "2ad91f1dca2dcd5fc89e7208d1e5059f0bac0870d63fc3bac21c7a9388fa18fd",
-  })
-}
-
-This should be sent via `POST` to `/api/nostr/`
+  "content": ""
+};
+```
