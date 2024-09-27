@@ -27,12 +27,12 @@ Should return:
 
 ## Register Walias
 
-### POST /walias/register
+### POST /walias
 ```ts
 {
-  name: "handle",
+  name: "name",
   domain: "domain",
-  pk: "2ad91f1dca2dcd5fc89e7208d1e5059f0bac0870d63fc3bac21c7a9388fa18fd", // hex public key
+  pubkey: "2ad91f1dca2dcd5fc89e7208d1e5059f0bac0870d63fc3bac21c7a9388fa18fd", // hex public key
   ref?: "snort" // Reference
 }
 ```
@@ -55,26 +55,74 @@ Should return:
 
 Once the payment is done, the updatable event should be published.
 
+## Transfer Walias (Authenticated)
+
+### PUT /walias/:name
+```ts
+{
+  pubkey: "1bd91f1dca2dcd5fc89e7208d1e5059f0bac0870d63fc3bac21c7a9388fa18fd", // hex public key
+}
+```
+
+Should return:
+
+```ts
+{
+  success: boolean,
+  reason?: string // Error
+}
+```
+
+## Delete Walias (Authenticated)
+
+### DELETE /walias/:name
+
+No body
+
+Should return:
+
+```ts
+{
+  success: boolean,
+  reason?: string // Error
+}
+```
+
+## List walias by pubkey (Authenticated)
+
+### GET /walias
+
+Should return:
+
+```ts
+[
+  "name1",
+  "name2",
+]
+```
+
 # Authenticated endpoints (Nostr based)
 
 Authenticated methods should use a HTTP Nostr Header like [NIP-98](https://github.com/nostr-protocol/nips/blob/master/98.md)
 
 ```js
 const body = JSON.stringify({
-  "name": "handle",
+  "name": "name",
   "domain": "domain",
-  "pk": "2ad91f1dca2dcd5fc89e7208d1e5059f0bac0870d63fc3bac21c7a9388fa18fd",
+  "pubkey": "2ad91f1dca2dcd5fc89e7208d1e5059f0bac0870d63fc3bac21c7a9388fa18fd",
 });
-
-const base64Body = btoa(body);
 
 const event = {
   "kind": 27235,
   "tags": [
     ["u", "/api/walias"],
     ["method", "POST"],
-    ["payload", base64Body]
+    ["payload", sha256Hex(body)] // requires a hash function using crypto
   ],
   "content": ""
 };
+
+const encodedEvent = btoa(JSON.stringify(event));
+
+const headers = `Authorization: Nostr ${encodedEvent}`;
 ```
