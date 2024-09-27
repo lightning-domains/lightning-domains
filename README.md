@@ -33,7 +33,7 @@ A json file should be accesable `$DOMAIN/.well-known/domain.json` with the follo
 {
   "title": "La Crypta",
   "logo": "https://image_url",
-  "description": "https://pbs.twimg.com/profile_images/1755606302951411712/5HjGkdHm_400x400.jpg",
+  "description": "Biggest Bitcoin community in Argentina",
   "apiEndpoint": "https://lightningdomain.io/domain",
   "adminPubkey": "hex_pubkey"
 }
@@ -41,20 +41,41 @@ A json file should be accesable `$DOMAIN/.well-known/domain.json` with the follo
 
 ## Updatable Event
 
-Emitted by the Lightning Domain Admin.
+Emitted by the Lightning Domain Admin. Badge as defined in [NIP-58](https://github.com/nostr-protocol/nips/blob/master/58.md)
+
+### Badge Definition
 
 ```json
 {
-  "pubkey": "$DOMAIN_ADMIN",
-  "kind": 31201,
+  "pubkey": "$DOMAIN_ROOT", // root handle _ of the domain
+  "kind": 30009, // Badge definition
   "tags": [
-    ["d", "$USER_PUBKEY@$DOMAIN"],
-    ["p", "$USER_PUBKEY"],
+    ["d", "$DOMAIN:$USER_PUBKEY"], // Unique Identifier
+    ["name", "$DOMAIN profile"],
+    ["description", "User profile badge for $USER_PUBKEY at $DOMAIN"],
+    ["image", "https://nostr.academy/awards/bravery.png", "1024x1024"], // Domain Logo
+    ["thumb", "https://nostr.academy/awards/bravery_256x256.png", "256x256"]
+
+    ["p", "$USER_PUBKEY"], // User
     ["h", "$DOMAIN"],
     ["i", "walias_handle1"], // username (without domain)
     ["i", "walias_handle2"] // Can have multiple handles assigned
+    ["i", "walias_handle3"]
   ],
-  "content": ""
-  ...
+  "content": "" // Can be used for user profile data, stats, roles, activity, etc.
+  // ...
 }
 ```
+
+### Badge Award
+
+```json
+{
+  "pubkey": "$DOMAIN_ROOT", // root handle _ of the domain
+  "kind": 8,
+  "tags": [
+    ["a", "30009:$DOMAIN:$USER_PUBKEY"],
+    ["p", "$USER_PUBKEY", "wss://relay"],
+  ],
+  // ...
+}
