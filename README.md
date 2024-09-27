@@ -10,7 +10,7 @@ This repo hold the Lightning Domain standard.
 - NIP-05 and LUD-16 should be owned by the same user
 - .well-known file
 - User `_` on NIP-05 must have a valid pubkey (ROOT)
-- An updatable event should be piblished when handles are assigned or removed for a pubkey
+- Create a badge definition and badge award per pubkey
 - [Walias endpoints](./API_ENDPOINTS.md)
 
 ## Api Endpoints
