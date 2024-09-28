@@ -1,7 +1,8 @@
 # Api Endpoints
 
 A walias is the resulting address of `name@domain`.
-You have 2 models. `walias` and `pubkey`. A pubkey can have multiple walias.
+You have 2 models. `walias` and `pubkey`.
+A `pubkey` can have multiple `walias`.
 
 ## Get pubkey data
 
