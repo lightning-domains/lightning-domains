@@ -87,14 +87,9 @@ Registers a new walias to the given `pubkey`.
 ```json
 {
   "walias": "name@domain",
-  "quote": {
-    "price": 70000,
-    "data": {
-      "type": "short"
-    }
-  },
   "invoice": "lnbc700u1pn0fewqpp...",
-  "referenceId": "9j47dzaqrykna2pjnaepjgnv3wsdp4fey4qtfsx5sx7u",
+  "referenceId": "9j47dzaqrykna2pjnaepjgnv3wsdp4fey4qtfsx5sx7u", // e tag of the zapReceipt to be published
+  "relays": ["wss://relay.domain.com"], // Relays where zapReceipt will be published
   "verify": "https://url_lnurl21_compatible.com/check"
 }
 ```
