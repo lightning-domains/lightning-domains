@@ -1,135 +1,243 @@
-# Api Endpoints
+# API Endpoints
 
-A walias is the resulting address of `name@domain`.
-You have 2 models. `walias` and `pubkey`.
+A **walias** is the resulting address of `name@domain`.
+There are two models: `walias` and `pubkey`.
 A `pubkey` can have multiple `walias`.
 
-## Get pubkey data
+---
 
-### GET /pubkey/{pubkey}
+## Get Pubkey Data
 
-Should return:
+**GET** `/pubkey/{pubkey}`
 
-```ts
+#### Description:
+
+Fetches the details (names and relays) associated with a given public key.
+
+#### Response:
+
+- **200 OK** (Success)
+
+```json
 {
-  names: ["some", "handles"],
-  relays: ["wss://relay.url"],
+  "names": ["some", "handles"],
+  "relays": ["wss://relay.url"]
 }
 ```
 
-## Availability
+---
 
-Checks the availability of the name
+## Get walias public data
 
-### GET /walias/{name}/quote
+**GET** `/walias/{name}`
 
-Should return:
+#### Description:
 
-```ts
+Checks if a walias name is available or already registered. If registered, returns the associated `pubkey`.
+
+#### Response:
+
+- **200 OK** (Success)
+  - **Available Name** :
+
+```json
 {
-  available: boolean,
-  quote?: { // only if available
-    price: Number, // in sats
-    data: {type: "short"} | {}
-  },
-  why?: "REGISTERED" // reason why is not available
+  "available": true,
+  "quote": {
+    "price": 10000,
+    "data": {
+      "type": "short"
+    }
+  }
 }
 ```
+
+- **Unavailable Name (Already Registered)** :
+
+```json
+{
+  "available": false,
+  "pubkey": "2ad91f1dca2dcd5fc89e7208d1e5059f0bac0870d63fc3bac21c7a9388fa18fd"
+}
+```
+
+---
 
 ## Register Walias
 
-### POST /walias/{name}
-```ts
+**POST** `/walias/{name}`
+
+#### Description:
+
+Registers a new walias to the given `pubkey`.
+
+#### Request Body:
+
+```json
 {
-  pubkey: "2ad91f1dca2dcd5fc89e7208d1e5059f0bac0870d63fc3bac21c7a9388fa18fd", // hex public key
-  relays?: ["wss://relay.domain.com"] // optional relay urls
+  "pubkey": "2ad91f1dca2dcd5fc89e7208d1e5059f0bac0870d63fc3bac21c7a9388fa18fd",
+  "relays": ["wss://relay.domain.com"]
 }
 ```
 
-Should return:
+#### Response:
 
-```ts
+- **201 Created** (Walias Registered)
+
+```json
 {
-    walias: "name@domain",
-    quote: {
-        price: 70000, // sats value
-        data: {
-            type: "short"
-        }
-    },
-    invoice: "lnbc700u1pn0fewqpp5p6fmprzy23pyslgn7xzzp9srg9j47dzaqrykna2pjnaepjgnv3wsdp4fey4qtfsx5sx7unyv4ezqen0wgsxzmrzgpekummjwsh8xmmrd9skccqzzsxqzjcsp53vk776zwe3d4yee8zf085r9996h8w9e6u5v25209p9eq6a226grq9qyyssqnapdy7jmyjcl7vun7my5pq3y8473uchuh0q02px0d69xaggka9azss8967e6p73snv97tnfh3nhxur65etexy6v93nexkmlsq3nhvmcqu5dfmf",
-    referenceId: "9j47dzaqrykna2pjnaepjgnv3wsdp4fey4qtfsx5sx7u", // e tag in ZapReceipt event to be published
-    verify: "https://url_lnurl21_compatible.com/check" // LUD21 verify url
+  "walias": "name@domain",
+  "quote": {
+    "price": 70000,
+    "data": {
+      "type": "short"
+    }
+  },
+  "invoice": "lnbc700u1pn0fewqpp...",
+  "referenceId": "9j47dzaqrykna2pjnaepjgnv3wsdp4fey4qtfsx5sx7u",
+  "verify": "https://url_lnurl21_compatible.com/check"
 }
 ```
 
-Once the payment is done, the updatable event should be published.
+- **400 Bad Request** (Invalid Input)
+
+```json
+{
+  "reason": "Invalid pubkey"
+}
+```
+
+- **409 Conflict**
+
+```json
+{
+  "reason": "Already taken or not available"
+}
+```
+
+---
 
 ## Transfer Walias (Authenticated)
 
-### PUT /walias/{name}
-```ts
+**PUT** `/walias/{name}`
+
+#### Description:
+
+Transfers the walias ownership to a new `pubkey`.
+
+#### Request Body:
+
+```json
 {
-  pubkey: "1bd91f1dca2dcd5fc89e7208d1e5059f0bac0870d63fc3bac21c7a9388fa18fd", // hex public key
+  "pubkey": "1bd91f1dca2dcd5fc89e7208d1e5059f0bac0870d63fc3bac21c7a9388fa18fd"
 }
 ```
 
-Should return:
+#### Response:
 
-```ts
+- **200 OK** (Success)
+
+```json
 {
-  success: boolean,
-  reason?: string // Error
+  "success": true
 }
 ```
+
+- **400 Bad Request** (Invalid pubkey)
+
+```json
+{
+  "success": false,
+  "reason": "Invalid pubkey"
+}
+```
+
+- **401 Unauthorized** (Authentication Required)
+
+```json
+{
+  "success": false,
+  "reason": "Authentication required"
+}
+```
+
+- **403 Forbidden** (Invalid or Expired Authentication)
+
+```json
+{
+  "success": false,
+  "reason": "Invalid authentication"
+}
+```
+
+---
 
 ## Delete Walias (Authenticated)
 
-### DELETE /walias/{name}
+**DELETE** `/walias/{name}`
 
-No body
+#### Description:
 
-Should return:
+Deletes an existing walias.
 
-```ts
+#### Response:
+
+- **200 OK** (Success)
+
+```json
 {
-  success: boolean,
-  reason?: string // Error
+  "success": true
 }
 ```
 
-## List walias by pubkey (Authenticated)
+- **404 Not Found** (Walias Not Found)
 
-### GET /walias
-
-Should return:
-
-```ts
-[
-  "name1",
-  "name2",
-]
+```json
+{
+  "success": false,
+  "reason": "Walias not found"
+}
 ```
 
-# Authenticated endpoints (Nostr based)
+- **401 Unauthorized** (Authentication Required)
 
-Authenticated methods should use a HTTP Nostr Header like [NIP-98](https://github.com/nostr-protocol/nips/blob/master/98.md)
+```json
+{
+  "success": false,
+  "reason": "Authentication required"
+}
+```
+
+- **403 Forbidden** (Invalid or Expired Authentication)
+
+```json
+{
+  "success": false,
+  "reason": "Invalid authentication"
+}
+```
+
+---
+
+# Authentication (Nostr-based)
+
+Authenticated methods should use an HTTP Nostr Header as defined in [NIP-98](https://github.com/nostr-protocol/nips/blob/master/98.md) .
 
 ```js
 const body = JSON.stringify({
-  "name": "name",
-  "domain": "domain",
-  "pubkey": "2ad91f1dca2dcd5fc89e7208d1e5059f0bac0870d63fc3bac21c7a9388fa18fd",
+  name: "name",
+  domain: "domain",
+  pubkey: "2ad91f1dca2dcd5fc89e7208d1e5059f0bac0870d63fc3bac21c7a9388fa18fd",
 });
 
 const event = {
-  "kind": 27235,
-  "tags": [
+  kind: 27235,
+  tags: [
     ["u", "/api/walias"],
     ["method", "POST"],
-    ["payload", sha256Hex(body)] // requires a hash function using crypto
+    ["payload", sha256Hex(body)],
   ],
-  "content": ""
+  content: "",
 };
 
 const encodedEvent = btoa(JSON.stringify(event));
