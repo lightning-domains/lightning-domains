@@ -4,7 +4,7 @@ This depo defines the requirements and guidelines for a Lightning Domain impleme
 
 ## Purpose
 
-The purpose of this standard is to
+The purpose is to define guidelines to make Bitcoin and Lightning Network domains interoperable and be able to send bitcoin as easy as sending an email.
 
 ## Rules
 
@@ -88,3 +88,8 @@ Emitted by the Lightning Domain Admin. Badge as defined in [NIP-58](https://gith
   // ...
 }
 ```
+
+## Pending to define
+
+- DNS Mangement
+- Receive email, wrap them in nostr event and sent to the `walias`'s `pubkey` using [NIP-44](https://github.com/nostr-protocol/nips/blob/master/44.md)
