@@ -1,37 +1,41 @@
 # Lightning Domains Standard
 
-This repo hold the Lightning Domain standard.
+This depo defines the requirements and guidelines for a Lightning Domain implementation.
+
+## Purpose
+
+The purpose of this standard is to
 
 ## Rules
 
-- Implement NIP-05
-- Implement LUD-16
-- Implement LUD-21
-- Implement NIP-57
-- NIP-05 and LUD-16 should be owned by the same user
+- Implement [NIP-05](https://github.com/nostr-protocol/nips/blob/master/05.md)
+- Implement [LUD-16](https://github.com/lnurl/luds/blob/luds/16.md)
+- Implement [LUD-21](https://github.com/lnurl/luds/blob/luds/21.md)
+- Implement [NIP-57](https://github.com/nostr-protocol/nips/blob/master/57.md)
+- [NIP-05](https://github.com/nostr-protocol/nips/blob/master/05.md) and [LUD-16](https://github.com/lnurl/luds/blob/luds/16.md) should be owned by the same user
 - .well-known file
-- User `_` on NIP-05 must have a valid pubkey (ROOT)
+- User `_` on [NIP-05](https://github.com/nostr-protocol/nips/blob/master/05.md) must have a valid pubkey (ROOT)
 - Create a badge definition and badge award per pubkey
 - Endpoints use [NIP-98](https://github.com/nostr-protocol/nips/blob/master/98.md)
 - [Walias endpoints](./api/REST_ENDPOINTS.md)
 
 ## Api Endpoints
 
-- Get waliases by pubkey
-- Check walias availability and price
-- Register/Buy new walias
-- Transfer walias
-- Remove walias
+- Get `waliases` by `pubkey`
+- Check `walias` availability and price
+- Register/Buy new `walias`
+- Update/Transfer `walias`
+- Remove `walias`
 
 ## Domain .well-known
 
 A json file should be accesable `$DOMAIN/.well-known/domain.json` with the following structure:
 
-- title: The name of the domain
+- title: The name of the `domain`
 - logo: The url of the logo image
-- description (optional): A description of the domain
+- description (optional): A description of the `domain`
 - apiEndpoint (optional): The url of the api endpoint (Lightning Domain API) (Default: https://lightningdomain.io/api)
-- adminPubkey: The hex encoded public key of the admin
+- adminPubkey (optional): The hex encoded public key of the admin (defaults to root if not present)
 
 ```json
 {
@@ -45,7 +49,7 @@ A json file should be accesable `$DOMAIN/.well-known/domain.json` with the follo
 
 ## Updatable Event
 
-Emitted by the Lightning Domain Admin. Badge as defined in [NIP-58](https://github.com/nostr-protocol/nips/blob/master/58.md)
+Emitted by the Lightning Domain Admin. Badge as defined in [NIP-58](https://github.com/nostr-protocol/nips/blob/master/58.md). Should be re-build and published whenever `walias` names change.
 
 ### Badge Definition
 
@@ -62,9 +66,9 @@ Emitted by the Lightning Domain Admin. Badge as defined in [NIP-58](https://gith
 
     ["p", "$USER_PUBKEY"], // User
     ["h", "$DOMAIN"],
-    ["i", "walias_handle1"], // username (without domain)
-    ["i", "walias_handle2"] // Can have multiple handles assigned
-    ["i", "walias_handle3"]
+    ["i", "walias_name1"], // username (without domain)
+    ["i", "walias_name"] // Can have multiple handles assigned
+    ["i", "walias_name3"]
   ],
   "content": "" // Can be used for user profile data, stats, roles, activity, etc.
   // ...
