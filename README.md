@@ -3,6 +3,7 @@
 This repo hold the Lightning Domain standard.
 
 ## Rules
+
 - Implement NIP-05
 - Implement LUD-16
 - Implement LUD-21
@@ -12,9 +13,11 @@ This repo hold the Lightning Domain standard.
 - User `_` on NIP-05 must have a valid pubkey (ROOT)
 - Create a badge definition and badge award per pubkey
 - Endpoints use [NIP-98](https://github.com/nostr-protocol/nips/blob/master/98.md)
-- [Walias endpoints](./API_ENDPOINTS.md)
+- [Walias endpoints](./api/REST_ENDPOINTS.md)
 
 ## Api Endpoints
+
+- Get waliases by pubkey
 - Check walias availability and price
 - Register/Buy new walias
 - Transfer walias
@@ -76,7 +79,8 @@ Emitted by the Lightning Domain Admin. Badge as defined in [NIP-58](https://gith
   "kind": 8,
   "tags": [
     ["a", "30009:$DOMAIN:$USER_PUBKEY"],
-    ["p", "$USER_PUBKEY", "wss://relay"],
-  ],
+    ["p", "$USER_PUBKEY", "wss://relay"]
+  ]
   // ...
 }
+```
