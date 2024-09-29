@@ -27,6 +27,62 @@ Fetches the details (names and relays) associated with a given public key.
 
 ---
 
+## Set Pubkey Relays (Authenticated)
+
+**PUT** `/pubkey/{pubkey}`
+
+#### Description:
+
+Update relayList for the pubkey.
+
+#### Request Body:
+
+```json
+{
+  "relays": ["wss://relay.url"]
+}
+```
+
+#### Response:
+
+- **200 OK** (Success)
+
+```json
+{
+  "names": ["some", "handles"],
+  "relays": ["wss://relay.url"]
+}
+```
+
+- **400 Bad Request** (Invalid pubkey)
+
+```json
+{
+  "success": false,
+  "reason": "Invalid pubkey"
+}
+```
+
+- **401 Unauthorized** (Authentication Required)
+
+```json
+{
+  "success": false,
+  "reason": "Authentication required"
+}
+```
+
+- **403 Forbidden** (Invalid or Expired Authentication)
+
+```json
+{
+  "success": false,
+  "reason": "Invalid authentication"
+}
+```
+
+---
+
 ## Get walias public data
 
 **GET** `/walias/{name}`
@@ -75,8 +131,7 @@ Registers a new walias to the given `pubkey`.
 
 ```json
 {
-  "pubkey": "2ad91f1dca2dcd5fc89e7208d1e5059f0bac0870d63fc3bac21c7a9388fa18fd",
-  "relays": ["wss://relay.domain.com"]
+  "pubkey": "2ad91f1dca2dcd5fc89e7208d1e5059f0bac0870d63fc3bac21c7a9388fa18fd"
 }
 ```
 
@@ -90,7 +145,8 @@ Registers a new walias to the given `pubkey`.
   "invoice": "lnbc700u1pn0fewqpp...",
   "referenceId": "9j47dzaqrykna2pjnaepjgnv3wsdp4fey4qtfsx5sx7u", // e tag of the zapReceipt to be published
   "relays": ["wss://relay.domain.com"], // Relays where zapReceipt will be published
-  "verify": "https://url_lnurl21_compatible.com/check"
+  "verify": "https://url_lnurl21_compatible.com/check",
+  "relays": ["wss://relay.domain.com"] // Relays where zapReceipt will be published
 }
 ```
 
