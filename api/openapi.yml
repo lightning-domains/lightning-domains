@@ -1,0 +1,266 @@
+openapi: "3.0.0"
+info:
+  title: Walias API
+  version: "1.0.0"
+  description: API for managing walias and pubkeys.
+servers:
+  - url: https://api.walias.io
+paths:
+  /pubkey/{pubkey}:
+    get:
+      summary: Get Pubkey Data
+      description: Fetches the details (names and relays) associated with a given public key.
+      parameters:
+        - in: path
+          name: pubkey
+          required: true
+          schema:
+            type: string
+          description: Public key to fetch data for.
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  names:
+                    type: array
+                    items:
+                      type: string
+                  relays:
+                    type: array
+                    items:
+                      type: string
+  /walias/{name}:
+    get:
+      summary: Get Walias Public Data
+      description: Checks if a walias name is available or already registered. If registered, returns the associated `pubkey`.
+      parameters:
+        - in: path
+          name: name
+          required: true
+          schema:
+            type: string
+          description: Walias name to check.
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    properties:
+                      available:
+                        type: boolean
+                        enum: [true]
+                      quote:
+                        type: object
+                        properties:
+                          price:
+                            type: number
+                          data:
+                            type: object
+                            properties:
+                              type:
+                                type: string
+                  - type: object
+                    properties:
+                      available:
+                        type: boolean
+                        enum: [false]
+                      pubkey:
+                        type: string
+    post:
+      summary: Register Walias
+      description: Registers a new walias to the given `pubkey`.
+      parameters:
+        - in: path
+          name: name
+          required: true
+          schema:
+            type: string
+          description: Walias name to register.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - pubkey
+              properties:
+                pubkey:
+                  type: string
+                relays:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        "201":
+          description: Walias Registered
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  walias:
+                    type: string
+                  invoice:
+                    type: string
+                  referenceId:
+                    type: string
+                  relays:
+                    type: array
+                    items:
+                      type: string
+                  verify:
+                    type: string
+        "400":
+          description: Invalid Input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "409":
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+    put:
+      summary: Transfer Walias
+      description: Transfers the walias ownership to a new `pubkey`.
+      parameters:
+        - in: path
+          name: name
+          required: true
+          schema:
+            type: string
+          description: Walias name to transfer.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - pubkey
+              properties:
+                pubkey:
+                  type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+        "400":
+          description: Invalid Pubkey
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  reason:
+                    type: string
+        "401":
+          description: Authentication Required
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  reason:
+                    type: string
+        "403":
+          description: Invalid Authentication
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  reason:
+                    type: string
+      security:
+        - NostrAuth: []
+    delete:
+      summary: Delete Walias
+      description: Deletes an existing walias.
+      parameters:
+        - in: path
+          name: name
+          required: true
+          schema:
+            type: string
+          description: Walias name to delete.
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+        "404":
+          description: Walias Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  reason:
+                    type: string
+        "401":
+          description: Authentication Required
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  reason:
+                    type: string
+        "403":
+          description: Invalid Authentication
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  reason:
+                    type: string
+      security:
+        - NostrAuth: []
+components:
+  securitySchemes:
+    NostrAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Nostr-based authentication as defined in [NIP-98](https://github.com/nostr-protocol/nips/blob/master/98.md).
