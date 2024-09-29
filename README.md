@@ -15,6 +15,7 @@ The purpose is to define guidelines to make Bitcoin and Lightning Network domain
 - [NIP-05](https://github.com/nostr-protocol/nips/blob/master/05.md) and [LUD-16](https://github.com/lnurl/luds/blob/luds/16.md) should be owned by the same user
 - .well-known file
 - User `_` on [NIP-05](https://github.com/nostr-protocol/nips/blob/master/05.md) must have a valid pubkey (ROOT)
+- Admin user must be name `admin`.
 - Create a badge definition and badge award per pubkey
 - Endpoints use [NIP-98](https://github.com/nostr-protocol/nips/blob/master/98.md)
 - [Walias endpoints](./api/REST_ENDPOINTS.md)
@@ -43,7 +44,8 @@ A json file should be accesable `$DOMAIN/.well-known/domain.json` with the follo
   "logo": "https://image_url",
   "description": "Biggest Bitcoin community in Argentina",
   "apiEndpoint": "https://lightningdomain.io/domain",
-  "adminPubkey": "hex_pubkey"
+  "rootPubkey": "hex_pubkey",
+  "adminPubkey": "hex_pubkey" // Optional
 }
 ```
 
