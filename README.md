@@ -118,6 +118,6 @@ This documentation is released under the [MIT License]() .
 
 ## Contact
 
-For any questions or support, please open an issue on the GitHub repository or contact us at [support@example.com]() .
+If you encounter any issues or have questions about the API, please open an issue on our [GitHub repository](https://github.com/lightning-domains/lightning-domains) or contact our [La Crypta Discord](https://discord.lacrypta.ar).
 
 ---

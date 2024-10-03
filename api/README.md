@@ -117,12 +117,6 @@ curl -X GET https://api.walias.io/domain.com/users/{pubkey}/wallets \
 
 ---
 
-# Support
-
-If you encounter any issues or have questions about the API, please open an issue on our [GitHub repository](https://github.com/lightning-domains/lightning-domains) or contact our [La Crypta Discord](https://discord.lacrypta.ar) .
-
----
-
 # Thank You
 
 Thank you for using the Lightning Domains API. We look forward to seeing what you build!
