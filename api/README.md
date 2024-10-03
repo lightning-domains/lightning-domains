@@ -1,6 +1,6 @@
-# Lightning Domains API Documentation
+# Lightning Domains API
 
-This API allows you to interact with user data, wallets, and waliases in the Lightning Network ecosystem.
+This API allows you to interact with `user` data, `wallets`, and `waliases` in the **Lightning Domains** ecosystem.
 
 ## Table of Contents
 
