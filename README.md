@@ -112,7 +112,7 @@ We welcome contributions to improve this documentation. Please submit a pull req
 
 ## License
 
-This documentation is released under the [MIT License]() .
+This documentation is released under the [MIT License](./LICENSE.md) .
 
 ---
 
