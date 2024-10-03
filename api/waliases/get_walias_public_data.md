@@ -24,7 +24,7 @@ Checks if a walias name is available or already registered.
 
 - **If the walias is available:**
 
-```json
+```jsonc
 {
   "available": true,
   "quote": {
@@ -38,7 +38,7 @@ Checks if a walias name is available or already registered.
 
 **Example:**
 
-```json
+```jsonc
 {
   "available": true,
   "quote": {
@@ -52,7 +52,7 @@ Checks if a walias name is available or already registered.
 
 - **If the walias is not available:**
 
-```json
+```jsonc
 {
   "available": false,
   "pubkey": "string"
@@ -61,7 +61,7 @@ Checks if a walias name is available or already registered.
 
 **Example:**
 
-```json
+```jsonc
 {
   "available": false,
   "pubkey": "2ad91f1dca2dcd5fc89e7208d1e5059f0bac0870d63fc3bac21c7a9388fa18fd"
@@ -72,7 +72,7 @@ Checks if a walias name is available or already registered.
 
 **Description:** Walias not found.**Content-Type:** `application/json`**Example:**
 
-```json
+```jsonc
 {
   "success": false,
   "reason": "Walias not found"

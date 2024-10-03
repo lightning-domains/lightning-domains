@@ -21,7 +21,7 @@ Fetches the details (names and relays) associated with a given public key.
 **Content-Type:** `application/json`
 **Example Response:**
 
-```json
+```jsonc
 {
   "names": ["some", "handles"],
   "relays": ["wss://relay.url"]
@@ -33,7 +33,7 @@ Fetches the details (names and relays) associated with a given public key.
 **Content-Type:** `application/json`
 **Example Response:**
 
-```json
+```jsonc
 {
   "success": false,
   "reason": "User not found"

@@ -23,7 +23,7 @@ Authentication is required using NostrAuth.
 **Content-Type:** `application/json`
 **Schema:**
 
-```json
+```jsonc
 {
   "pubkey": "string"
 }
@@ -37,7 +37,7 @@ Authentication is required using NostrAuth.
 **Content-Type:** `application/json`
 **Example:**
 
-```json
+```jsonc
 {
   "success": true
 }
@@ -49,7 +49,7 @@ Authentication is required using NostrAuth.
 **Content-Type:** `application/json`
 **Example:**
 
-```json
+```jsonc
 {
   "success": false,
   "reason": "Invalid pubkey"
@@ -62,7 +62,7 @@ Authentication is required using NostrAuth.
 **Content-Type:** `application/json`
 **Example:**
 
-```json
+```jsonc
 {
   "success": false,
   "reason": "Authentication required"
@@ -75,7 +75,7 @@ Authentication is required using NostrAuth.
 **Content-Type:** `application/json`
 **Example:**
 
-```json
+```jsonc
 {
   "success": false,
   "reason": "Invalid authentication"
@@ -88,7 +88,7 @@ Authentication is required using NostrAuth.
 **Content-Type:** `application/json`
 **Example:**
 
-```json
+```jsonc
 {
   "success": false,
   "reason": "Walias not found"

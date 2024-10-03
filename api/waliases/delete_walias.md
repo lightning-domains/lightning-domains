@@ -26,7 +26,7 @@ Authentication is required using NostrAuth.
 **Content-Type:** `application/json`
 **Example:**
 
-```json
+```jsonc
 {
   "success": true
 }
@@ -38,7 +38,7 @@ Authentication is required using NostrAuth.
 **Content-Type:** `application/json`
 **Example:**
 
-```json
+```jsonc
 {
   "success": false,
   "reason": "Authentication required"
@@ -51,7 +51,7 @@ Authentication is required using NostrAuth.
 **Content-Type:** `application/json`
 **Example:**
 
-```json
+```jsonc
 {
   "success": false,
   "reason": "Invalid authentication"
@@ -64,7 +64,7 @@ Authentication is required using NostrAuth.
 **Content-Type:** `application/json`
 **Example:**
 
-```json
+```jsonc
 {
   "success": false,
   "reason": "Walias not found"

@@ -32,7 +32,7 @@ A json file should be accesable `$DOMAIN/.well-known/domain.json` with the follo
 - apiEndpoint (optional): The url of the api endpoint (Lightning Domain API) (Default: https://lightningdomain.io/api)
 - adminPubkey (optional): The hex encoded public key of the admin (defaults to root if not present)
 
-```json
+```jsonc
 {
   "title": "La Crypta",
   "logo": "https://image_url",
@@ -51,7 +51,7 @@ Emitted by the Lightning Domain Admin. Badge as defined in [NIP-58](https://gith
 
 ### Badge Definition
 
-```json
+```jsonc
 {
   "pubkey": "$DOMAIN_ROOT", // root handle _ of the domain
   "kind": 30009, // Badge definition
@@ -75,7 +75,7 @@ Emitted by the Lightning Domain Admin. Badge as defined in [NIP-58](https://gith
 
 ### Badge Award
 
-```json
+```jsonc
 {
   "pubkey": "$DOMAIN_ROOT", // root handle _ of the domain
   "kind": 8,

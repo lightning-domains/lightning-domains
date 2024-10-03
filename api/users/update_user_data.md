@@ -23,7 +23,7 @@ Authentication is required using NostrAuth.
 **Content-Type:** `application/json`
 **Schema:**
 
-```json
+```jsonc
 {
   "relays": ["string"]
 }
@@ -36,7 +36,7 @@ Authentication is required using NostrAuth.
 **Content-Type:** `application/json`
 **Example Response:**
 
-```json
+```jsonc
 {
   "names": ["some", "handles"],
   "relays": ["wss://relay.url"]
@@ -48,7 +48,7 @@ Authentication is required using NostrAuth.
 **Content-Type:** `application/json`
 **Example Response:**
 
-```json
+```jsonc
 {
   "success": false,
   "reason": "Invalid pubkey"
@@ -60,7 +60,7 @@ Authentication is required using NostrAuth.
 **Content-Type:** `application/json`
 **Example Response:**
 
-```json
+```jsonc
 {
   "success": false,
   "reason": "Authentication required"
@@ -72,7 +72,7 @@ Authentication is required using NostrAuth.
 **Content-Type:** `application/json`
 **Example Response:**
 
-```json
+```jsonc
 {
   "success": false,
   "reason": "Invalid authentication"
@@ -84,7 +84,7 @@ Authentication is required using NostrAuth.
 **Content-Type:** `application/json`
 **Example Response:**
 
-```json
+```jsonc
 {
   "success": false,
   "reason": "User not found"

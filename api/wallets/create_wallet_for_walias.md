@@ -23,7 +23,7 @@ Authentication is required using NostrAuth.
 **Content-Type:** `application/json`
 **Schema:**
 
-```json
+```jsonc
 {
   "id": "string (optional)",
   "config": {
@@ -46,7 +46,7 @@ Authentication is required using NostrAuth.
 **Content-Type:** `application/json`
 **Example:**
 
-```json
+```jsonc
 {
   "id": "wallet_id",
   "config": {
@@ -67,7 +67,7 @@ Authentication is required using NostrAuth.
 **Content-Type:** `application/json`
 **Example:**
 
-```json
+```jsonc
 {
   "success": false,
   "reason": "Authentication required"
@@ -80,7 +80,7 @@ Authentication is required using NostrAuth.
 **Content-Type:** `application/json`
 **Example:**
 
-```json
+```jsonc
 {
   "success": false,
   "reason": "Invalid authentication"

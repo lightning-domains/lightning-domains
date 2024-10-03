@@ -19,7 +19,7 @@ Registers a new walias to the given pubkey.
 **Content-Type:** `application/json`
 **Schema:**
 
-```json
+```jsonc
 {
   "pubkey": "string"
 }
@@ -33,7 +33,7 @@ Registers a new walias to the given pubkey.
 **Content-Type:** `application/json`
 **Example:**
 
-```json
+```jsonc
 {
   "walias": "name@domain",
   "pubkey": "23123123..."
@@ -46,7 +46,7 @@ Registers a new walias to the given pubkey.
 **Content-Type:** `application/json`
 **Example:**
 
-```json
+```jsonc
 {
   "walias": "name@domain",
   "invoice": "lnbc700u1pn0fewqpp...",
@@ -62,7 +62,7 @@ Registers a new walias to the given pubkey.
 **Content-Type:** `application/json`
 **Example:**
 
-```json
+```jsonc
 {
   "reason": "Invalid pubkey"
 }
@@ -74,7 +74,7 @@ Registers a new walias to the given pubkey.
 **Content-Type:** `application/json`
 **Example:**
 
-```json
+```jsonc
 {
   "reason": "Already taken or not available"
 }

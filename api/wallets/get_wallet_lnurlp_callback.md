@@ -22,7 +22,7 @@ Retrieves the LNURL-Pay callback response for the wallet ID.
 **Description:** LNURL-Pay callback response retrieved successfully.**Content-Type:** `application/json`
 **Schema:**
 
-```json
+```jsonc
 {
   "pr": "string",
   "routes": [],
@@ -32,7 +32,7 @@ Retrieves the LNURL-Pay callback response for the wallet ID.
 
 **Example:**
 
-```json
+```jsonc
 {
   "pr": "lnbc1...",
   "routes": [],
@@ -46,7 +46,7 @@ Retrieves the LNURL-Pay callback response for the wallet ID.
 **Content-Type:** `application/json`
 **Example:**
 
-```json
+```jsonc
 {
   "status": "ERROR",
   "reason": "Invalid request parameters"
@@ -59,7 +59,7 @@ Retrieves the LNURL-Pay callback response for the wallet ID.
 **Content-Type:** `application/json`
 **Example:**
 
-```json
+```jsonc
 {
   "status": "ERROR",
   "reason": "Wallet not found"

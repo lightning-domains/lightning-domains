@@ -21,7 +21,7 @@ Retrieves the LNURL-Pay response (LUD-06) for the wallet ID.
 **Description:** LNURL-Pay response retrieved successfully.**Content-Type:** `application/json`
 **Schema:**
 
-```json
+```jsonc
 {
   "tag": "string",
   "callback": "string",
@@ -33,7 +33,7 @@ Retrieves the LNURL-Pay response (LUD-06) for the wallet ID.
 
 **Example:**
 
-```json
+```jsonc
 {
   "tag": "payRequest",
   "callback": "https://lightningdomains.io/wallets/{walletId}/lnurlp/callback",
@@ -49,7 +49,7 @@ Retrieves the LNURL-Pay response (LUD-06) for the wallet ID.
 **Content-Type:** `application/json`
 **Example:**
 
-```json
+```jsonc
 {
   "status": "ERROR",
   "reason": "Wallet not found"

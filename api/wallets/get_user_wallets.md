@@ -27,7 +27,7 @@ Gets the wallets associated with a specific user.
 **Schema:** An array of wallet objects.
 **Wallet Object Schema:**
 
-```json
+```jsonc
 {
   "id": "string",
   "config": {
@@ -46,7 +46,7 @@ Gets the wallets associated with a specific user.
 
 **Example:**
 
-```json
+```jsonc
 [
   {
     "id": "wallet_id",
@@ -71,7 +71,7 @@ Gets the wallets associated with a specific user.
 **Content-Type:** `application/json`
 **Example:**
 
-```json
+```jsonc
 {
   "success": false,
   "reason": "Authentication required"
@@ -84,7 +84,7 @@ Gets the wallets associated with a specific user.
 **Content-Type:** `application/json`
 **Example:**
 
-```json
+```jsonc
 {
   "success": false,
   "reason": "Invalid authentication"
@@ -97,7 +97,7 @@ Gets the wallets associated with a specific user.
 **Content-Type:** `application/json`
 **Example:**
 
-```json
+```jsonc
 {
   "success": false,
   "reason": "User not found"
