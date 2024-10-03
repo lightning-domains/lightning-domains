@@ -18,15 +18,9 @@ The purpose is to define guidelines to make Bitcoin and Lightning Network domain
 - Admin user must be name `admin`.
 - Create a badge definition and badge award per pubkey
 - Endpoints use [NIP-98](https://github.com/nostr-protocol/nips/blob/master/98.md)
-- [Walias endpoints](./api/REST_ENDPOINTS.md)
+- Implement [REST Endpoints](./api/README.md)
 
-## Api Endpoints
-
-- Get `waliases` by `pubkey`
-- Check `walias` availability and price
-- Register/Buy new `walias`
-- Update/Transfer `walias`
-- Remove `walias`
+---
 
 ## Domain .well-known
 
@@ -48,6 +42,8 @@ A json file should be accesable `$DOMAIN/.well-known/domain.json` with the follo
   "adminPubkey": "hex_pubkey" // Optional
 }
 ```
+
+---
 
 ## Updatable Event
 
@@ -91,7 +87,37 @@ Emitted by the Lightning Domain Admin. Badge as defined in [NIP-58](https://gith
 }
 ```
 
+---
+
 ## Pending to define
 
 - DNS Mangement
 - Receive email, wrap them in nostr event and sent to the `walias`'s `pubkey` using [NIP-44](https://github.com/nostr-protocol/nips/blob/master/44.md)
+
+## Contributing
+
+We welcome contributions to improve this documentation. Please submit a pull request or open an issue on our GitHub repository.
+
+---
+
+## Additional Resources
+
+- [Nostr Protocol](https://github.com/nostr-protocol)
+
+- [LNURL Specification](https://github.com/lnurl/luds)
+
+- [Lightning Network](https://lightning.network/)
+
+---
+
+## License
+
+This documentation is released under the [MIT License]() .
+
+---
+
+## Contact
+
+For any questions or support, please open an issue on the GitHub repository or contact us at [support@example.com]() .
+
+---
