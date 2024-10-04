@@ -84,6 +84,8 @@ The API uses standard HTTP status codes to indicate the success or failure of an
 
 - [Delete Walias](./waliases/delete_walias.md)
 
+- [Verify Walias Payment](./waliases/verify_payment.md)
+
 ### Wallet
 
 - [Get User Wallets](./wallets/get_user_wallets.md)
