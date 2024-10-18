@@ -65,9 +65,10 @@ The Lightning Domains Standard integrates several key technologies and protocols
 ### Rules
 
 - Implement [NIP-05](https://github.com/nostr-protocol/nips/blob/master/05.md)
-- Implement [LUD-16](https://github.com/lnurl/luds/blob/luds/16.md)
-- Implement [LUD-21](https://github.com/lnurl/luds/blob/luds/21.md)
 - Implement [NIP-57](https://github.com/nostr-protocol/nips/blob/master/57.md)
+- Implement [LUD-16](https://github.com/lnurl/luds/blob/luds/16.md)
+- Implement [LUD-18](https://github.com/lnurl/luds/blob/luds/18.md)
+- Implement [LUD-21](https://github.com/lnurl/luds/blob/luds/21.md)
 - [NIP-05](https://github.com/nostr-protocol/nips/blob/master/05.md) and [LUD-16](https://github.com/lnurl/luds/blob/luds/16.md) should be owned by the same user
 - .well-known file
 - User `_` on [NIP-05](https://github.com/nostr-protocol/nips/blob/master/05.md) must have a valid pubkey (ROOT)
